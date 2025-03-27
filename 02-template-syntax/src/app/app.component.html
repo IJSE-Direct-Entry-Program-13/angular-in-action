@@ -1,0 +1,54 @@
+<h1>Template Syntax</h1>
+
+<h1>Text Interpolation</h1>
+<ul>
+  <li>I am just an expression {{ 10 + 15 }}</li>
+</ul>
+<h1>Text Interpolation Binding</h1>
+<ul>
+  <li>What about me? {{ getRandom() }}</li>
+  <li>{{ abc.random() }}</li>
+  <li>{{ abc.PI }}</li>
+  <li>{{ title }}</li>
+</ul>
+<hr>
+
+<h1>If Condition</h1>
+
+@if (true) {
+  <h3>I am true</h3>
+}
+<hr>
+
+@if (getRandom() < 0.5) {
+  <h3>Random value is less than 0.5</h3>
+} @else {
+  <h3>Random value is more than 0.5</h3>
+}
+
+@let randomValue = getRandom();
+
+<h1>Random value is {{ randomValue }}</h1>
+@if (randomValue < 0.2){
+  <h3>Random value is less then 0.2</h3>
+} @else if (randomValue < 0.6){
+  <h3>Random value is between 0.2 - 0.6</h3>
+} @else if (randomValue < 0.8) {
+  <h3>Random value is between 0.6 - 0.8</h3>
+} @else {
+  <h3>Random value is more than 0.8</h3>
+}
+<hr>
+@if ('ijse'.substring(2); as value){
+  <h1>{{value}}</h1>
+}
+
+<hr>
+
+<h1 *ngIf="getRandom() < 0.5 as value; else elseRef">
+  This is the old way of handling if {{value}}
+</h1>
+<ng-template #elseRef>
+  This is else part
+</ng-template>
+
