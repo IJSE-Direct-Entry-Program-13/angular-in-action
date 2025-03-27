@@ -45,6 +45,8 @@ import { Component } from '@angular/core';
         <h1>Weekend: It is fun</h1>
       </ng-container>
     </ng-container>
+    <hr>
+    <app-loop />
   `,
   standalone: false,
   styleUrl: './app.component.scss'

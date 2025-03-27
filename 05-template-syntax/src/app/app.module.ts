@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {FormsModule} from "@angular/forms";
+import { LoopComponent } from './loop/loop.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoopComponent
   ],
     imports: [
         BrowserModule,
