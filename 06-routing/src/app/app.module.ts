@@ -12,63 +12,7 @@ import {ManageStockComponent} from './admin/manage-stock/manage-stock.component'
 import {ViewClientsComponent} from './guest/view-clients/view-clients.component';
 import {ViewStockComponent} from './guest/view-stock/view-stock.component';
 import {RouterModule, Routes} from '@angular/router';
-
-const routes: Routes = [
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: '/main'
-  },
-  {
-    path: 'main',
-    component: MainComponent
-  },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: '/admin/dashboard'
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      },
-      {
-        path: 'manage-clients',
-        component: ManageClientsComponent
-      },
-      {
-        path: 'manage-stocks',
-        component: ManageStockComponent
-      }
-    ]
-  },
-  {
-    path: 'guest',
-    component: GuestComponent,
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'dashboard'
-      },
-      {
-        path: 'dashboard',
-        component: GuestDashboardComponent
-      },
-      {
-        path: 'view-clients',
-        component: ViewClientsComponent
-      },
-      {
-        path: 'view-stock',
-        component: ViewStockComponent
-      }]
-  }
-];
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -84,7 +28,8 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    // RouterModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
