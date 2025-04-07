@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 type Customer = {
   id: string,
@@ -20,7 +20,7 @@ type Customer = {
     <p>You entered: {{ txt.value }}</p>
     <hr>
     <h3 class="text-center">Customer Form</h3>
-    <form (ngSubmit)="saveCustomer()" class="text-center" [formGroup]="frmCustomer">
+    <form #frm (ngSubmit)="saveCustomer()" class="text-center" [formGroup]="frmCustomer">
       <div class="mb-2">
         <label for="txt-id" class="mb-1 fw-bolder">Customer ID</label>
         <input type="text" id="txt-id"
@@ -69,13 +69,15 @@ type Customer = {
       </tr>
       </thead>
       <tbody>
-        @for(customer of customerList; track $index){
+        @for (customer of customerList; track $index) {
           <tr>
-            <td>{{customer.id}}</td>
-            <td>{{customer.name}}</td>
-            <td>{{customer.address}}</td>
-            <td>{{customer.contact}}</td>
-            <td><button (click)="deleteCustomer(customer)">DELETE</button></td>
+            <td>{{ customer.id }}</td>
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.address }}</td>
+            <td>{{ customer.contact }}</td>
+            <td>
+              <button (click)="deleteCustomer(customer)">DELETE</button>
+            </td>
           </tr>
         }
       </tbody>
@@ -90,32 +92,36 @@ type Customer = {
 })
 export class ReactiveFormComponent {
 
-  isInvalid(controlName: string):boolean{
-    const ctrl = this.frmCustomer
-      .get(controlName)!;
-    return ctrl.invalid && ctrl.touched;
-  }
 
-  deleteCustomer(customer: Customer) {
-    const index = this.customerList.indexOf(customer);
-    this.customerList.splice(index, 1);
-  }
-
+  @ViewChild("frm")
+  frmElmRef!: ElementRef<HTMLFormElement>
   customerList: Customer[] = [];
   // customerList: Array<Customer> = [];
-
   text = "ijse";
   txt = new FormControl('ijse');
-  frmCustomer = new FormGroup({
-    id: new FormControl('', [Validators.required,
-      Validators.pattern(/^C\d{3}$/)]),
-    name: new FormControl('', [Validators.required,
-      Validators.pattern(/[A-Za-z ]+/)]),
-    address: new FormControl('', [Validators.required,
-      Validators.minLength(4)]),
-    contact: new FormControl('', [Validators.required,
-      Validators.pattern(/^\d{3}-\d{7}$/)])
-  });
+
+  // frmCustomer = new FormGroup({
+  //   id: new FormControl('', [Validators.required,
+  //     Validators.pattern(/^C\d{3}$/)]),
+  //   name: new FormControl('', [Validators.required,
+  //     Validators.pattern(/[A-Za-z ]+/)]),
+  //   address: new FormControl('', [Validators.required,
+  //     Validators.minLength(4)]),
+  //   contact: new FormControl('', [Validators.required,
+  //     Validators.pattern(/^\d{3}-\d{7}$/)])
+  // });
+
+  frmCustomer!: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    const {required, pattern, minLength} = Validators;
+    this.frmCustomer = fb.group({
+      id: ['', required, pattern(/^C\d{3}$/)],
+      name: ['', required, pattern(/[A-Za-z ]+/)],
+      address: ['', required, minLength(4)],
+      contact: ['', required, pattern(/^\d{3}-\d{7}$/)],
+    })
+  }
 
   saveCustomer() {
     if (this.frmCustomer.valid) {
@@ -125,8 +131,23 @@ export class ReactiveFormComponent {
       this.frmCustomer.reset();
     } else {
       this.frmCustomer.markAllAsTouched();
-      alert("Invalid customer data");
+      const elm = (<HTMLInputElement>this.frmElmRef.nativeElement
+        .querySelector('.ng-invalid')!);
+      elm.focus();
+      elm.select();
     }
   }
 
+  isInvalid(controlName: string): boolean {
+    const ctrl = this.frmCustomer
+      .get(controlName)!;
+    return ctrl.invalid && ctrl.touched;
+  }
+
+  // fb = inject(FormBuilder);
+
+  deleteCustomer(customer: Customer) {
+    const index = this.customerList.indexOf(customer);
+    this.customerList.splice(index, 1);
+  }
 }
