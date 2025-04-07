@@ -25,6 +25,7 @@ type Customer = {
         <label for="txt-id" class="mb-1 fw-bolder">Customer ID</label>
         <input type="text" id="txt-id"
                formControlName="id"
+               [class.is-invalid]="isInvalid('id')"
                class="form-control text-center"
                placeholder="Eg. C001">
       </div>
@@ -32,6 +33,7 @@ type Customer = {
         <label for="txt-name" class="mb-1 fw-bolder">Customer Name</label>
         <input type="text" id="txt-name"
                formControlName="name"
+               [class.is-invalid]="isInvalid('name')"
                class="form-control text-center"
                placeholder="Eg. Kasun Sampath">
       </div>
@@ -39,6 +41,7 @@ type Customer = {
         <label for="txt-address" class="mb-1 fw-bolder">Customer Address</label>
         <input type="text" id="txt-address"
                formControlName="address"
+               [class.is-invalid]="isInvalid('address')"
                class="form-control text-center"
                placeholder="Eg. Galle Road, Panadura">
       </div>
@@ -46,6 +49,7 @@ type Customer = {
         <label for="txt-contact" class="mb-1 fw-bolder">Customer Contact</label>
         <input type="text" id="txt-contact"
                formControlName="contact"
+               [class.is-invalid]="isInvalid('contact')"
                class="form-control text-center"
                placeholder="Eg. 011-1234567">
       </div>
@@ -86,6 +90,12 @@ type Customer = {
 })
 export class ReactiveFormComponent {
 
+  isInvalid(controlName: string):boolean{
+    const ctrl = this.frmCustomer
+      .get(controlName)!;
+    return ctrl.invalid && ctrl.touched;
+  }
+
   deleteCustomer(customer: Customer) {
     const index = this.customerList.indexOf(customer);
     this.customerList.splice(index, 1);
@@ -114,6 +124,7 @@ export class ReactiveFormComponent {
         .getRawValue());
       this.frmCustomer.reset();
     } else {
+      this.frmCustomer.markAllAsTouched();
       alert("Invalid customer data");
     }
   }
