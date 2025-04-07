@@ -1,5 +1,12 @@
-import { Component } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+
+type Customer = {
+  id: string,
+  name: string,
+  address: string,
+  contact: string
+};
 
 @Component({
   selector: 'app-reactive-form',
@@ -47,23 +54,63 @@ import {FormControl, FormGroup} from '@angular/forms';
         <button class="btn btn-warning" type="reset">Reset</button>
       </div>
     </form>
+    <table class="table mt-2 table-hover table-responsive">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>ADDRESS</th>
+        <th>CONTACT</th>
+        <th>DELETE</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for(customer of customerList; track $index){
+          <tr>
+            <td>{{customer.id}}</td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.address}}</td>
+            <td>{{customer.contact}}</td>
+            <td><button>DELETE</button></td>
+          </tr>
+        }
+      </tbody>
+      <tfoot *ngIf="!customerList.length">
+      <tr>
+        <td colspan="5" class="text-center">No customers found</td>
+      </tr>
+      </tfoot>
+    </table>
   `,
   styleUrl: './reactive-form.component.scss'
 })
 export class ReactiveFormComponent {
 
-  saveCustomer(){
-    console.log(this.frmCustomer.getRawValue());
-  }
+  customerList: Customer[] = [];
+  // customerList: Array<Customer> = [];
 
   text = "ijse";
   txt = new FormControl('ijse');
-
   frmCustomer = new FormGroup({
-    id : new FormControl(''),
-    name : new FormControl(''),
-    address : new FormControl(''),
-    contact : new FormControl('')
+    id: new FormControl('', [Validators.required,
+      Validators.pattern(/^C\d{3}$/)]),
+    name: new FormControl('', [Validators.required,
+      Validators.pattern(/[A-Za-z ]+/)]),
+    address: new FormControl('', [Validators.required,
+      Validators.minLength(4)]),
+    contact: new FormControl('', [Validators.required,
+      Validators.pattern(/^\d{3}-\d{7}$/)])
   });
+
+  saveCustomer() {
+    if (this.frmCustomer.valid) {
+      console.log(this.frmCustomer.getRawValue());
+      this.customerList.push(<Customer>this.frmCustomer
+        .getRawValue());
+      this.frmCustomer.reset();
+    } else {
+      alert("Invalid customer data");
+    }
+  }
 
 }
