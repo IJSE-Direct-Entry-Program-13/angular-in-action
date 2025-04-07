@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     <ul>
     <li><a href="#" routerLink="/life-cycle">Component Life Cycle</a></li>
     <li><a href="#" routerLink="/template-driven-form">Template Driven Form</a></li>
-    <li>Reactive Form</li>
+    <li><a href="#" routerLink="/reactive-form">Reactive Form</a></li>
     <li>Template Driven Form Validation</li>
     <li>Reactive Form Validation</li>
     </ul>

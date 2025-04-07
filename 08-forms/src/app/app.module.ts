@@ -6,17 +6,20 @@ import { AppComponent } from './app.component';
 import { TemplateDrivenFormComponent } from './template-driven-form/template-driven-form.component';
 import { LifeCycleComponent } from './life-cycle/life-cycle.component';
 import { WrapperComponent } from './wrapper/wrapper.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TemplateDrivenFormComponent,
     LifeCycleComponent,
-    WrapperComponent
+    WrapperComponent,
+    ReactiveFormComponent
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule
   ],
