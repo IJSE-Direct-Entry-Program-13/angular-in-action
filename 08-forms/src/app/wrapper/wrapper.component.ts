@@ -1,4 +1,4 @@
-import {Component, ContentChild, ElementRef, ViewChild} from '@angular/core';
+import {afterNextRender, afterRender, Component, ContentChild, effect, ElementRef, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-wrapper',
@@ -22,14 +22,32 @@ export class WrapperComponent {
     console.log("Constructor");
     console.log(this.ref1);
     console.log(this.ref2);
-    console.log("============")
+    console.log("============");
+
+    effect(() => {
+      console.log("Effect()");
+    });
+
+    afterRender({
+      write: () => {
+        console.log("After Render");
+        return true;
+      }
+    });
+
+    afterNextRender({
+      write: () => {
+        console.log("After Next Render");
+        return true;
+      }
+    });
   }
 
   ngOnInit(){
     console.log("ngOnInit");
     console.log(this.ref1);
     console.log(this.ref2);
-    console.log("============")
+    console.log("============");
   }
 
   ngAfterContentInit(){
@@ -44,5 +62,9 @@ export class WrapperComponent {
     console.log(this.ref1);
     console.log(this.ref2);
     console.log("============")
+  }
+
+  ngOnDestroy(){
+    console.log("ngOnDestroy")
   }
 }

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TemplateDrivenFormComponent } from './template-driven-form/template-driven-form.component';
 import { LifeCycleComponent } from './life-cycle/life-cycle.component';
 import { WrapperComponent } from './wrapper/wrapper.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { WrapperComponent } from './wrapper/wrapper.component';
     WrapperComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule
   ],
