@@ -2,13 +2,13 @@ import {
   AfterContentChecked,
   AfterContentInit,
   AfterViewChecked,
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   DoCheck,
   ElementRef,
   OnChanges,
   OnDestroy,
-  OnInit,
+  OnInit, Renderer2,
   SimpleChanges,
   ViewChild
 } from '@angular/core';
