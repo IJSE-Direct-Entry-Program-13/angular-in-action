@@ -71,7 +71,7 @@ type Customer = {
             <td>{{customer.name}}</td>
             <td>{{customer.address}}</td>
             <td>{{customer.contact}}</td>
-            <td><button>DELETE</button></td>
+            <td><button (click)="deleteCustomer(customer)">DELETE</button></td>
           </tr>
         }
       </tbody>
@@ -85,6 +85,11 @@ type Customer = {
   styleUrl: './reactive-form.component.scss'
 })
 export class ReactiveFormComponent {
+
+  deleteCustomer(customer: Customer) {
+    const index = this.customerList.indexOf(customer);
+    this.customerList.splice(index, 1);
+  }
 
   customerList: Customer[] = [];
   // customerList: Array<Customer> = [];
