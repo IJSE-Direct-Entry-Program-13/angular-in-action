@@ -40,19 +40,14 @@ export class TableComponent {
   records: Array<Record> = [];
 
   constructor(public recordService: RecordService) {
-    this.getAllCustomers();
+    this.recordService.getAllRecords()
+      .subscribe(val => this.records = val);
   }
 
   deleteRecord(id: string) {
     this.recordService.deleteRecord(id)
       .subscribe({
-        next: val => { this.getAllCustomers() },
         error: err => { alert("Failed to delete, try again")}
       });
-  }
-
-  getAllCustomers() {
-    this.recordService.getAllRecords()
-      .subscribe(val => this.records = val);
   }
 }

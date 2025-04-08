@@ -49,9 +49,16 @@ export class FormComponent {
       elm.focus();
       elm.select();
     }else{
-      // Save Record
-      ngForm.reset();
-      (<HTMLInputElement>frm.querySelector('input')!).focus();
+      this.recordService.saveRecord(this.record)
+        .subscribe({
+          next: val => {
+            ngForm.reset();
+            (<HTMLInputElement>frm.querySelector('input')!).focus();
+          },
+          error: err => {
+            alert(`Failed to save the record with error: ${err}`);
+          }
+        });
     }
   }
 }
