@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <h1 class="p-2 text-center">Welcome to Angular Http Client!</h1>
     <app-form />
+    <app-table />
   `,
   standalone: false,
   styleUrl: './app.component.scss'
