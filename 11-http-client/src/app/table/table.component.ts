@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Record, RecordService} from '../record.service';
 
 @Component({
@@ -15,13 +15,15 @@ import {Record, RecordService} from '../record.service';
         </tr>
         </thead>
         <tbody>
-        @for(record of records;track record.id){
-          <tr>
-            <td>{{record.id}}</td>
-            <td>{{record.name}}</td>
-            <td><button class="btn btn-danger btn-sm">DELETE</button></td>
-          </tr>
-        }
+          @for (record of records; track record.id) {
+            <tr>
+              <td>{{ record.id }}</td>
+              <td>{{ record.name }}</td>
+              <td>
+                <button (click)="deleteRecord(record.id)" class="btn btn-danger btn-sm">DELETE</button>
+              </td>
+            </tr>
+          }
         </tbody>
         <tfoot *ngIf="!records.length">
         <tr>
@@ -38,7 +40,17 @@ export class TableComponent {
   records: Array<Record> = [];
 
   constructor(public recordService: RecordService) {
-    recordService.getAllRecords()
+    this.getAllCustomers();
+  }
+
+  deleteRecord(id: string) {
+    this.recordService.deleteRecord(id).subscribe(val => {
+      this.getAllCustomers();
+    });
+  }
+
+  getAllCustomers() {
+    this.recordService.getAllRecords()
       .subscribe(records => this.records = records);
   }
 }

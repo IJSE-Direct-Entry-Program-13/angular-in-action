@@ -15,4 +15,8 @@ export class RecordService {
   getAllRecords(){
     return this.http.get<Record[]>(this.API_BASE_URL);
   }
+
+  deleteRecord(id: string){
+    return this.http.delete(`${this.API_BASE_URL}/${id}`);
+  }
 }
