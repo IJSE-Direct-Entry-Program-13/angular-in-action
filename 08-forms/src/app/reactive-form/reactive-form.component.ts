@@ -53,9 +53,12 @@ type Customer = {
             <label for="txt-contact" class="mb-1 fw-bolder">Customer Contact</label>
             <input type="text" id="txt-contact"
                    [formControlName]="$index"
-                   [class.is-invalid]="isInvalid('contact')"
+                   [class.is-invalid]="isInvalid(['contacts',$index])"
                    class="form-control text-center"
                    placeholder="Eg. 011-1234567">
+            @if($last){
+                <button>+</button>
+            }
           </div>
         }
 
