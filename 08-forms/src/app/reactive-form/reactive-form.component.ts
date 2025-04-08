@@ -46,13 +46,19 @@ type Customer = {
                class="form-control text-center"
                placeholder="Eg. Galle Road, Panadura">
       </div>
-      <div class="mb-2">
-        <label for="txt-contact" class="mb-1 fw-bolder">Customer Contact</label>
-        <input type="text" id="txt-contact"
-               formControlName="contact"
-               [class.is-invalid]="isInvalid('contact')"
-               class="form-control text-center"
-               placeholder="Eg. 011-1234567">
+      <div formArrayName="contacts">
+
+        @for(contact of getContacts().controls;track $index){
+          <div class="mb-2">
+            <label for="txt-contact" class="mb-1 fw-bolder">Customer Contact</label>
+            <input type="text" id="txt-contact"
+                   [formControlName]="$index"
+                   [class.is-invalid]="isInvalid('contact')"
+                   class="form-control text-center"
+                   placeholder="Eg. 011-1234567">
+          </div>
+        }
+
       </div>
       <div class="d-flex gap-2 justify-content-center">
         <button class="btn btn-primary">Save</button>
@@ -146,7 +152,7 @@ export class ReactiveFormComponent {
     }
   }
 
-  isInvalid(controlName: string): boolean {
+  isInvalid(controlName: string | Array<string|number>): boolean {
     const ctrl = this.frmCustomer
       .get(controlName)!;
     return ctrl.invalid && ctrl.touched;
