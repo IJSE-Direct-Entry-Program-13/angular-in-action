@@ -1,0 +1,8 @@
+table :is(
+th:last-child,
+td:last-child,
+td:first-child,
+th:first-child) {
+  width: 100px;
+  text-align: center;
+}

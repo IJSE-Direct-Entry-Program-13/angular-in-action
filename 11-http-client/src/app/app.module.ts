@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
+import {RecordService} from './record.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { TableComponent } from './table/table.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [RecordService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {RecordService} from '../record.service';
 
 @Component({
   selector: 'app-form',
@@ -25,4 +26,6 @@ import { Component } from '@angular/core';
 })
 export class FormComponent {
 
+  constructor(public recordService: RecordService) {
+  }
 }

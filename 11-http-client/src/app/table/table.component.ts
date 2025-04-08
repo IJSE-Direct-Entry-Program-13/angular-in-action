@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {RecordService} from '../record.service';
 
 @Component({
   selector: 'app-table',
@@ -26,4 +27,6 @@ import { Component } from '@angular/core';
 })
 export class TableComponent {
 
+  constructor(public recordService: RecordService) {
+  }
 }
