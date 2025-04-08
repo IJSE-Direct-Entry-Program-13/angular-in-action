@@ -6,7 +6,10 @@ import {MyServiceService} from '../service/my-service.service';
   standalone: false,
   template: `
     A number between 0 - 100
-    <input class="form-control" [value]="service.getProgress()"
+    <input class="form-control"
+           #ref
+           [value]="service.getProgress() | async"
+           (input)="service.updateProgress(+ref.value)"
            type="number" min="0" max="100">
   `,
   styleUrl: './spinner.component.scss'

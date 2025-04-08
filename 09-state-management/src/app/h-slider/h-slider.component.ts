@@ -6,7 +6,9 @@ import {MyServiceService} from '../service/my-service.service';
   standalone: false,
   template: `
     <input type="range" min="0" max="100"
-           [value]="service.getProgress()">
+           #ref
+           (input)="service.updateProgress(+ref.value)"
+           [value]="service.getProgress() | async">
   `,
   styleUrl: './h-slider.component.scss'
 })
