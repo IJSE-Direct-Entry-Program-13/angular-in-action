@@ -8,6 +8,7 @@ import { LifeCycleComponent } from './life-cycle/life-cycle.component';
 import { WrapperComponent } from './wrapper/wrapper.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { NotBlankDirective } from './not-blank.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
     TemplateDrivenFormComponent,
     LifeCycleComponent,
     WrapperComponent,
-    ReactiveFormComponent
+    ReactiveFormComponent,
+    NotBlankDirective
   ],
   imports: [
     FormsModule,

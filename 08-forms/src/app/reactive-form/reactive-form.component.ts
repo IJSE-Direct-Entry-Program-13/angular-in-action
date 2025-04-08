@@ -116,10 +116,10 @@ export class ReactiveFormComponent {
   constructor(private fb: FormBuilder) {
     const {required, pattern, minLength} = Validators;
     this.frmCustomer = fb.group({
-      id: ['', required, pattern(/^C\d{3}$/)],
-      name: ['', required, pattern(/[A-Za-z ]+/)],
-      address: ['', required, minLength(4)],
-      contact: ['', required, pattern(/^\d{3}-\d{7}$/)],
+      id: ['', [required, pattern(/^C\d{3}$/)]],
+      name: ['', [required, pattern(/[A-Za-z ]+/)]],
+      address: ['', [required, minLength(4)]],
+      contact: ['', [required, pattern(/^\d{3}-\d{7}$/)]],
     })
   }
 
