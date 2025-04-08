@@ -44,13 +44,15 @@ export class TableComponent {
   }
 
   deleteRecord(id: string) {
-    this.recordService.deleteRecord(id).subscribe(val => {
-      this.getAllCustomers();
-    });
+    this.recordService.deleteRecord(id)
+      .subscribe({
+        next: val => { this.getAllCustomers() },
+        error: err => { alert("Failed to delete, try again")}
+      });
   }
 
   getAllCustomers() {
     this.recordService.getAllRecords()
-      .subscribe(records => this.records = records);
+      .subscribe(val => this.records = val);
   }
 }

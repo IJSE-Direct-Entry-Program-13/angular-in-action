@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RecordService} from '../record.service';
+import {Record, RecordService} from '../record.service';
 
 @Component({
   selector: 'app-form',
@@ -8,12 +8,12 @@ import {RecordService} from '../record.service';
     <form class="p-2 text-center">
       <div class="mb-2">
         <label for="txt-id">ID</label>
-        <input placeholder="Eg. C001"
+        <input name="id" [(ngModel)]="record.id" placeholder="Eg. C001"
                id="txt-id" class="form-control text-center" type="text">
       </div>
       <div class="mb-2">
         <label for="txt-name">NAME</label>
-        <input placeholder="Eg. Kasun Sampath"
+        <input name="name" [(ngModel)]="record.name" placeholder="Eg. Kasun Sampath"
                id="txt-name" class="form-control text-center" type="text">
       </div>
       <div class="d-flex gap-2 justify-content-center">
@@ -25,6 +25,11 @@ import {RecordService} from '../record.service';
   styleUrl: './form.component.scss'
 })
 export class FormComponent {
+
+  record: Record = {
+    id: '',
+    name: ''
+  }
 
   constructor(public recordService: RecordService) {
   }
