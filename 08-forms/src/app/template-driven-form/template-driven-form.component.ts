@@ -20,7 +20,7 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
       <div class="mb-2">
         <label class="mb-2" for="txt-username">Username</label>
         <input [(ngModel)]="user.username"
-               required
+               notBlank
                pattern="^\s*[A-Za-z0-9]{3,}\s*$"
                minlength="3"
                name="username"
@@ -34,8 +34,8 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
             Username should be at least 3 characters long
           } @else if (txtUserName.hasError('pattern')) {
             Invalid characters detected, username should follow the pattern [A-Za-z0-9]
-          } @else {
-            Username required
+          } @else if(txtUserName.hasError('notBlank')){
+            Username can't be blank
           }
         </div>
       </div>

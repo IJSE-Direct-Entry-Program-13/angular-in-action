@@ -1,5 +1,6 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {notBlank} from '../not-blank.directive';
 
 type Customer = {
   id: string,
@@ -118,7 +119,7 @@ export class ReactiveFormComponent {
     this.frmCustomer = fb.group({
       id: ['', [required, pattern(/^C\d{3}$/)]],
       name: ['', [required, pattern(/[A-Za-z ]+/)]],
-      address: ['', [required, minLength(4)]],
+      address: ['', [notBlank(), minLength(4)]],
       contact: ['', [required, pattern(/^\d{3}-\d{7}$/)]],
     })
   }

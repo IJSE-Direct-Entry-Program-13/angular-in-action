@@ -28,7 +28,7 @@ export function notBlank(): ValidatorFn {
     if (control.value?.trim().length){
       return null;
     }else{
-      return { notBlank: false }
+      return { notBlank: true }
     }
   }
 }
