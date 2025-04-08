@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  padding: 8px;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+:host:hover {
+  background-color: rgba(211, 211, 211, 0.48);
+  border-radius: 5px;
+}
+
+:host-context(body) button {
+  color: black;
+}
