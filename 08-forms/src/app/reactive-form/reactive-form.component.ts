@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {notBlank} from '../not-blank.directive';
 
 type Customer = {
@@ -120,8 +120,15 @@ export class ReactiveFormComponent {
       id: ['', [required, pattern(/^C\d{3}$/)]],
       name: ['', [required, pattern(/[A-Za-z ]+/)]],
       address: ['', [notBlank(), minLength(4)]],
-      contact: ['', [required, pattern(/^\d{3}-\d{7}$/)]],
+      contacts: fb.array([
+        ['', [notBlank(), pattern(/^\d{3}-\d{7}$/)]],
+        ['', [notBlank(), pattern(/^\d{3}-\d{7}$/)]]
+      ]),
     })
+  }
+
+  getContacts(){
+    return this.frmCustomer.get('contacts') as FormArray;
   }
 
   saveCustomer() {
