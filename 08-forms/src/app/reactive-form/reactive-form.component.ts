@@ -148,10 +148,14 @@ export class ReactiveFormComponent {
       this.frmCustomer.reset();
     } else {
       this.frmCustomer.markAllAsTouched();
-      const elm = (<HTMLInputElement>this.frmElmRef.nativeElement
-        .querySelector('.ng-invalid')!);
-      elm.focus();
-      elm.select();
+      for(const elm of this.frmElmRef
+        .nativeElement.querySelectorAll('.ng-invalid')){
+        if (elm instanceof HTMLInputElement){
+          elm.focus();
+          elm.select();
+          break;
+        }
+      }
     }
   }
 
