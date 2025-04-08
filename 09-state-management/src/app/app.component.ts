@@ -8,7 +8,8 @@ import {MyServiceService} from './service/my-service.service';
     <div class="d-flex p-2 justify-content-between align-items-center">
         <app-spinner />
         <h1 class="flex-grow-1 text-center">
-          Progress: {{service.getProgress()}}%
+          {{ 'Progress' | uppercase }}:
+          {{service.getProgress() | async}}%
         </h1>
     </div>
     <div class="p-2">

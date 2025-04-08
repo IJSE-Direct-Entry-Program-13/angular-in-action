@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 @Injectable()
 export class MyServiceService {
 
-  constructor() { }
+  subject = new BehaviorSubject(10);
 
-  getProgress(): number {
-    return 10;
+  updateProgress(progress: number){
+    this.subject.next(progress);
+  }
+
+  getProgress(): Subject<number> {
+    return this.subject;
   }
 }
