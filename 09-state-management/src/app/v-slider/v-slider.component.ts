@@ -5,11 +5,12 @@ import {MyServiceService} from '../service/my-service.service';
   selector: 'app-v-slider',
   standalone: false,
   template: `
-    <input type="range" min="0" max="100">
+    <input type="range" min="0" max="100"
+    [value]="service.getProgress()">
   `,
   styleUrl: './v-slider.component.scss'
 })
 export class VSliderComponent {
-  constructor(private service: MyServiceService) {
+  constructor(public service: MyServiceService) {
   }
 }

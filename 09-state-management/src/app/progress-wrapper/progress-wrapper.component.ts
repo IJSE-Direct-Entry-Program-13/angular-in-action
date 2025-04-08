@@ -5,7 +5,9 @@ import {MyServiceService} from '../service/my-service.service';
   selector: 'app-progress-wrapper',
   standalone: false,
   template: `
-    <div class="border bg-primary-subtle d-flex
+    <div
+      [style.border-radius]="service.getProgress() + '%'"
+      class="border bg-primary-subtle d-flex
     justify-content-center align-items-center"
          style="height: 250px; width: 250px;">
         <app-progress-bar />
@@ -14,6 +16,6 @@ import {MyServiceService} from '../service/my-service.service';
   styleUrl: './progress-wrapper.component.scss'
 })
 export class ProgressWrapperComponent {
-  constructor(private service: MyServiceService) {
+  constructor(public service: MyServiceService) {
   }
 }

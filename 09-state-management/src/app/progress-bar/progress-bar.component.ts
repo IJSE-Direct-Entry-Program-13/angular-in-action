@@ -6,12 +6,13 @@ import {MyServiceService} from '../service/my-service.service';
   standalone: false,
   template: `
     <div>
-      <div id="bar"></div>
+      <div id="bar"
+           [style.width]="service.getProgress() + '%'"></div>
     </div>
   `,
   styleUrl: './progress-bar.component.scss'
 })
 export class ProgressBarComponent {
-  constructor(private service: MyServiceService) {
+  constructor(public service: MyServiceService) {
   }
 }
