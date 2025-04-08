@@ -57,7 +57,7 @@ type Customer = {
                    class="form-control text-center"
                    placeholder="Eg. 011-1234567">
             @if($last){
-                <button>+</button>
+                <button type="button" (click)="addContact()">+</button>
             }
           </div>
         }
@@ -166,5 +166,12 @@ export class ReactiveFormComponent {
   deleteCustomer(customer: Customer) {
     const index = this.customerList.indexOf(customer);
     this.customerList.splice(index, 1);
+  }
+
+  addContact() {
+    this.getContacts().push(
+      this.fb.control('', [notBlank(),
+        Validators.pattern(/^\d{3}-\d{7}$/)])
+    );
   }
 }
