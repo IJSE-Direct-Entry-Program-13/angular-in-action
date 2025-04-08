@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RecordService} from '../record.service';
+import {Record, RecordService} from '../record.service';
 
 @Component({
   selector: 'app-table',
@@ -14,8 +14,16 @@ import {RecordService} from '../record.service';
           <th>DELETE</th>
         </tr>
         </thead>
-        <tbody></tbody>
-        <tfoot>
+        <tbody>
+        @for(record of records;track record.id){
+          <tr>
+            <td>{{record.id}}</td>
+            <td>{{record.name}}</td>
+            <td><button class="btn btn-danger btn-sm">DELETE</button></td>
+          </tr>
+        }
+        </tbody>
+        <tfoot *ngIf="!records.length">
         <tr>
           <td class="text-center" colspan="3">No Records Found</td>
         </tr>
@@ -27,6 +35,10 @@ import {RecordService} from '../record.service';
 })
 export class TableComponent {
 
+  records: Array<Record> = [];
+
   constructor(public recordService: RecordService) {
+    recordService.getAllRecords()
+      .subscribe(records => this.records = records);
   }
 }

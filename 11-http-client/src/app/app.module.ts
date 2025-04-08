@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
 import {RecordService} from './record.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {RecordService} from './record.service';
     TableComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule
   ],
   providers: [RecordService],
