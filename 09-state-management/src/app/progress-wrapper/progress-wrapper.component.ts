@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MyServiceService} from '../service/my-service.service';
 
 @Component({
   selector: 'app-progress-wrapper',
@@ -13,5 +14,6 @@ import { Component } from '@angular/core';
   styleUrl: './progress-wrapper.component.scss'
 })
 export class ProgressWrapperComponent {
-
+  constructor(private service: MyServiceService) {
+  }
 }

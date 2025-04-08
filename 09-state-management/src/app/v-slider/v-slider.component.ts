@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MyServiceService} from '../service/my-service.service';
 
 @Component({
   selector: 'app-v-slider',
@@ -9,5 +10,6 @@ import { Component } from '@angular/core';
   styleUrl: './v-slider.component.scss'
 })
 export class VSliderComponent {
-
+  constructor(private service: MyServiceService) {
+  }
 }

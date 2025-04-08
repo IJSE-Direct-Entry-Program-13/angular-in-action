@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MyServiceService} from './service/my-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
     <div class="d-flex p-2 justify-content-between align-items-center">
         <app-spinner />
         <h1 class="flex-grow-1 text-center">
-          Progress: 0%
+          Progress: {{service.getProgress()}}%
         </h1>
     </div>
     <div class="p-2">
@@ -22,4 +23,7 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+
+  constructor(public service: MyServiceService) {
+  }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MyServiceService} from '../service/my-service.service';
 
 @Component({
   selector: 'app-progress-bar',
@@ -11,5 +12,6 @@ import { Component } from '@angular/core';
   styleUrl: './progress-bar.component.scss'
 })
 export class ProgressBarComponent {
-
+  constructor(private service: MyServiceService) {
+  }
 }
