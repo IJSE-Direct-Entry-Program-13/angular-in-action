@@ -6,7 +6,7 @@ type Customer = {
   id: string,
   name: string,
   address: string,
-  contact: string
+  contacts: string[]
 };
 
 @Component({
@@ -84,7 +84,7 @@ type Customer = {
             <td>{{ customer.id }}</td>
             <td>{{ customer.name }}</td>
             <td>{{ customer.address }}</td>
-            <td>{{ customer.contact }}</td>
+            <td>{{ customer.contacts }}</td>
             <td>
               <button (click)="deleteCustomer(customer)">DELETE</button>
             </td>
