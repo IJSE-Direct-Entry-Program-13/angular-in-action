@@ -7,6 +7,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { HSliderComponent } from './h-slider/h-slider.component';
 import { VSliderComponent } from './v-slider/v-slider.component';
 import { ProgressWrapperComponent } from './progress-wrapper/progress-wrapper.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ProgressWrapperComponent } from './progress-wrapper/progress-wrapper.co
     SpinnerComponent,
     HSliderComponent,
     VSliderComponent,
-    ProgressWrapperComponent
+    ProgressWrapperComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
