@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {MyServiceService} from '../service/my-service.service';
 
 @Component({
@@ -16,6 +16,7 @@ import {MyServiceService} from '../service/my-service.service';
   styleUrl: './progress-wrapper.component.scss'
 })
 export class ProgressWrapperComponent {
-  constructor(public service: MyServiceService) {
-  }
+  service = inject(MyServiceService);
+  // constructor(public service: MyServiceService) {
+  // }
 }
