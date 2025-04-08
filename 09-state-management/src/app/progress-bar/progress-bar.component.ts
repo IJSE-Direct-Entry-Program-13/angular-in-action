@@ -7,7 +7,7 @@ import {MyServiceService} from '../service/my-service.service';
   template: `
     <div>
       <div id="bar"
-           [style.width]="service.getProgress() + '%'"></div>
+           [style.width]="(service.getProgress() | async) + '%'"></div>
     </div>
   `,
   styleUrl: './progress-bar.component.scss'

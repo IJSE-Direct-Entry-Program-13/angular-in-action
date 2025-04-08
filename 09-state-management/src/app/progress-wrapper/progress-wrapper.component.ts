@@ -6,7 +6,7 @@ import {MyServiceService} from '../service/my-service.service';
   standalone: false,
   template: `
     <div
-      [style.border-radius]="service.getProgress() + '%'"
+      [style.border-radius]="((service.getProgress() | async)! / 2) + '%'"
       class="border bg-primary-subtle d-flex
     justify-content-center align-items-center"
          style="height: 250px; width: 250px;">
